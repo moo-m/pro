@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>video player</title>
+  </head>
+  <body>
+      <div class="video-container">
+        <div class="canvass">
+          <video  controls id="video"></video>
+          <canvas id="canvas"></canvas>
+          <canvas id="speed"></canvas>
+          <canvas id="voice"></canvas>
+          <canvas id="duration"></canvas>
+          <canvas id="info"></canvas>
+          <canvas id="screen"></canvas>
+        </div>
+        <div class="input-container">
+          <input type="url" name="url" placeholder="url" />
+          <label for="file">click to upload file
+          </label>
+
+
+            <input type="file" name="file" accept="video/*" id="file" hidden />
+            <button class="play" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+          <!--     !Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+              <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
+            </button> 
+           
+        </div>
+      </div>
+    <script src="../js/videoPlayer.ts" type="module"></script>
+  </body>
+</html>

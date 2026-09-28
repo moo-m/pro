@@ -1,0 +1,484 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
+.screen {
+  height: 100vh;
+  display: grid;
+  grid-template: repeat(12, 1fr) / repeat(2, 1fr);
+  gap: 3px;
+  position: relative;
+}
+
+.window {
+  min-height: 200px;
+  background-color: transparent;
+  display: grid;
+  place-content: center;
+  font: italic small-caps bolder 20px "Segoe UI";
+}
+a {
+  text-decoration: none;
+}
+.link {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.scrolling {
+  height: 10px;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: tomato;
+  z-index: 1;
+  transition: width 1s linear;
+}
+.back {
+  background-color: #fafafa;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  color: #aaaaff;
+  margin: 2px;
+  border-radius: 30%;
+  box-shadow: 1px 1px 5px 2px whitesmoke;
+}
+.clock {
+  background: #f2f2f2
+    url(https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Rolex_logo.svg/1200px-Rolex_logo.svg.png)
+    no-repeat center/contain;
+}
+.window.movies {
+  background: url(https://image.tmdb.org/t/p/w1280/4xvXYD0SHWdttDJb1gJ4VuD1EeY.jpg)
+    no-repeat center/cover;
+}
+
+.inner-screen {
+  height: 100vh;
+  background-image: linear-gradient(
+    to top,
+    #00ffaa,
+    #aaff33,
+    #00ffab,
+    #aaff33,
+    #00ffac,
+    #aaff33,
+    #00ffad,
+    #aaff33,
+    #00ffae,
+    #aaff33,
+    #00ffaa,
+    #aaff33,
+    #00ffaa,
+    #aaff33,
+    #00ffaa,
+    #aaff33,
+    #00ffaa,
+    #aaff33
+  );
+  display: grid;
+  place-content: center;
+}
+.title {
+  font-family: "Butterfly Kids", cursive;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 3em;
+  width: 100%;
+  position: absolute;
+  top: 15vh;
+  text-align: center;
+}
+.digital {
+  position: absolute;
+  top: 25vh;
+  right: calc(50% - 100px);
+  width: 200px;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  font: small-caps bolder 32px sans-serif;
+}
+.main-clock {
+  background-color: #fff;
+  outline: 7px dotted green;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: white
+    url(https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Rolex_logo.svg/1200px-Rolex_logo.svg.png)
+    no-repeat center/contain;
+  & .center-clock {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    translate: -50% -50%;
+    & span {
+      display: block;
+      width: 10px;
+      background-image: linear-gradient(green, gold, green, gold);
+      transform-origin: top;
+      rotate: 180deg;
+    }
+    & .houre,
+    .minute,
+    .second {
+      height: 90px;
+      width: 10px;
+      border-radius: 0% 0% 100% 100%;
+      position: absolute;
+      inset: 50%;
+    }
+    & .second {
+      height: 110px;
+      width: 5px;
+    }
+    & .minute {
+      height: 90px;
+      width: 8px;
+    }
+    & .houre {
+      height: 60px;
+      width: 10px;
+    }
+  }
+  & .num {
+    position: absolute;
+    inset: 0px;
+    transform: rotate(var(--deg));
+    text-align: center;
+    & span {
+      display: inline-block;
+      transform: rotate(var(--deg-span));
+      font: small-caps bolder 16px Tahoma;
+    }
+  }
+}
+.mouse {
+  background: gray url() no-repeat center/contain;
+}
+.screen-mouse {
+  height: 100vh;
+  background-color: #3cf;
+  display: grid;
+  place-content: center;
+  & .container {
+    display: grid;
+    row-gap: 10px;
+    background-color: #28f;
+    box-shadow: 0 0 5px 2px blue;
+    & div {
+      background-color: darkblue;
+      width: 100px;
+      height: 40px;
+      margin: 10px;
+      color: red;
+      display: grid;
+      place-content: center;
+    }
+  }
+}
+
+.screen-movie {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 5% 1fr;
+  background-color: gray;
+
+  & .page-num {
+    font-family: "Butterfly Kids", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+  }
+
+  & .movie-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    background-color: #fa0;
+    & b,
+    & .form .search::placeholder {
+      font-family: "Butterfly Kids", cursive;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 2em;
+    }
+    & .form .search,
+    & .form .search:focus {
+      color: #f46;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+  & .main {
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 3px;
+    background-color: lemonchiffon;
+
+    & .image-container {
+      width: 49vw;
+      height: 250px;
+      position: relative;
+      &:hover .overview {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        background-color: rgba(200, 200, 200, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+      }
+
+      & .overview {
+        overflow: hidden;
+        height: 0;
+        transition: all 1s linear;
+      }
+      & .vote {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        color: red;
+        font-family: "Butterfly Kids", cursive;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 2em;
+      }
+      & .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  & footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    & .up {
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      background-color: orange;
+      color: tomato;
+      margin: 20px;
+      border-radius: 50%;
+      font: bolder 2em sans-serif;
+      rotate: 90deg;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+    }
+    & marquee {
+      font-family: "Butterfly Kids", cursive;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 1.5em;
+    }
+  }
+}
+.bools {
+  background-color: #f0ab25;
+  height: 100vh;
+}
+
+.container-media {
+  height: 100vh;
+  background-color: #af38b2;
+  display: grid;
+  grid-template-rows: 6fr 1fr;
+  .camira {
+    transform: scaleX(-1);
+    background-color: #fff;
+    & video {
+      display: none;
+    }
+  }
+  .tools {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    & Button {
+      all: unset;
+      margin: 5px;
+      padding: 10px;
+      padding-inline: 20px;
+      border-radius: 40px;
+    }
+    & .start {
+      background-color: rgba(51, 250, 34, 0.9);
+      &:hover {
+        box-shadow: 0px 0px 15px 10px darkgreen;
+      }
+    }
+    & .end {
+      background-color: rgba(250, 51, 100, 0.9);
+      &:hover {
+        box-shadow: 0px 0px 15px 10px darkred;
+      }
+    }
+  }
+}
+
+.video-container {
+  
+  height: 100vh;
+  width: 100vw;
+  background-color: rebeccapurple;
+  position: relative;
+  & .canvass {
+    position: relative;
+    height: 40%;
+    display: grid;
+    grid-template: 15% 1fr 1fr 15% / repeat(4, 1fr);
+    & canvas {
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    & #speed {
+      grid-area: 1 / 1 / 2 / -1; 
+    }
+    & #canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    & #voice {
+      grid-area: 2 / 4 / 4 / -1;
+    }
+    & #duration {
+      grid-area: 4 / 1 / 5 / -1;
+    }
+    & #screen {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    & #info {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    & #video{
+      position: absolute;
+      width: 10px;
+        }
+    
+  }
+
+  & .input-container {
+    position: absolute;
+    top: calc(50% - 75px);
+    right: calc(50% - 75px);
+    width: 150px;
+    height: 150px;
+    display: grid;
+    grid-template: repeat(2, 1fr) / 1fr;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
+    & label {
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    
+    & label,
+    [type="url"] {
+      width: inherit;
+      background-color: inherit;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 2px solid;
+    }
+    & input[name="uRl"i] {
+      border: none;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      &::placeholder {
+        text-align: center;
+        color: black;
+      }
+      &:hover {
+        outline: none;
+        border: none;
+      }
+    }
+
+    & .play {
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 20px;
+      background-color: transparent;
+      border: none;
+      visibility: hidden;
+    }
+
+  }
+}
+.container-chess{
+  height: 100vh;
+  background-color: #912BBC;
+  background-color: #33186B;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  & .chess-board{
+    position: relative;
+    width: 320px;
+    height: 320px;
+    box-shadow: 0 0 15px 2px currentColor;
+    & canvas{
+      position: absolute;
+    }
+    & #pices{
+      z-index: 3;
+    }
+    #info{
+      z-index: 2;
+    }
+  }
+}
+/*
+
+<div class="container-chess">
+  <div class="chess-board">
+    <canvas id="board"></canvas>
+    <canvas id="pices"></canvas>
+  </div>
+</div>
+*/

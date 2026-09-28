@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم هندسي خلفية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="main-header">
+    <nav class="navbar">
+        <a href="#home" onclick="showSection('home')" data-section="home">
+            <span class="nav-text">الرئيسية</span>
+        </a>
+        <a href="#intro" onclick="showSection('intro')" data-section="intro">
+            <span class="nav-text">نظرية فيثاغورس</span>
+        </a>
+        <a href="#triangle" onclick="showSection('triangle')" data-section="triangle">
+            <span class="nav-text">المثلث التفاعلي</span>
+        </a>
+        <a href="#proof" onclick="showSection('proof')" data-section="proof">
+            <span class="nav-text">البرهان البصري</span>
+        </a>
+    </nav>
+</header>
+    <!-- قسم الرئيسي -->
+    <main class="main-section" id="home">
+        <canvas id="geometryCanvas"></canvas>
+    </main>
+
+  
+<!-- قسم المدخل -->
+<main class="main-section intro-section" id="intro" style="display: none;">
+    <div class="intro-content">
+        <div class="slideshow-container">
+            <!-- الصورة 1 -->
+            <div class="slide active">
+                <img src="/assets/1.jpg" alt="صورة المدخل 1" class="intro-image">
+            </div>
+            
+            <!-- الصورة 2 -->
+            <div class="slide">
+                <img src="/assets/2.jpg" alt="صورة المدخل 2" class="intro-image">
+            </div>
+            
+            <!-- أزرار التنقل -->
+            <button class="slide-btn prev" onclick="changeSlide(-1)">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            
+            <button class="slide-btn next" onclick="changeSlide(1)">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+            
+            <!-- مؤشرات النقاط -->
+            <div class="slide-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<main class="main-section triangle-section" id="triangle" style="display: none;">
+    <div class="triangle-page page-1">
+        
+        <button id="toggleSidebarBtn" class="toggle-btn" title="إخفاء/إظهار القائمة">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+
+        <div class="controls-panel" id="sidebar">
+            <h2>نظرية فيثاغورس</h2>
+            
+            <div class="controls-container">
+                <div class="control-group">
+                    <label for="sideA">الضلع الأفقي (a): <span id="valueA">200</span></label>
+                    <input type="range" id="sideA" min="50" max="600" value="200">
+                </div>
+                
+                <div class="control-group">
+                    <label for="sideB">الضلع العمودي (b): <span id="valueB">150</span></label>
+                    <input type="range" id="sideB" min="50" max="600" value="150">
+                </div>
+                
+                <div class="control-group">
+                    <label>الوتر (c): <span id="valueC">250</span></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="showSquares">
+                        إظهار المربعات (Zoom Fit)
+                    </label>
+                </div>
+                
+                <div class="formula">
+                    <p>a² + b² = c²</p>
+                    <p id="formulaValues" dir="ltr">40000 + 22500 = 62500</p>
+                </div>
+
+                <div class="instruction-note">
+                    <p>💡 يمكنك سحب الدوائر الملونة على المثلث لتغيير الأبعاد</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="canvas-container" id="canvasContainer">
+            <canvas id="triangleCanvas"></canvas>
+        </div>
+    </div>
+</main>
+<!-- قسم البرهان -->
+<main class="main-section proof-section" id="proof" style="display: none;">
+    <div class="proof-container">
+        <!-- الجزء العلوي: النظرية -->
+        <div class="proof-top">
+            <h1>نظرية فيثاغورس</h1>
+            <div class="theorem-formula" style="direction:ltr">
+                <span class="term" style="color:#ff6b6b">a²</span>
+                <span class="plus">+</span>
+                <span class="term" style="color:#4ecdc4">b²</span>
+                <span class="equals">=</span>
+                <span class="term" style="color:#95e1d3">c²</span>
+            </div>
+        </div>
+
+        <!-- الجزء السفلي: البرهان التفاعلي -->
+        <div class="proof-bottom">
+            <h2>البرهان البصري</h2>
+            <div class="puzzle-container">
+                <!-- منطقة المربعات القابلة للسحب -->
+                <div class="draggable-area">
+                    <div class="square-wrapper">
+                        <div id="squareA" class="draggable-square" data-square="a" draggable="true">
+                            <span class="square-label">a²</span>
+                        </div>
+                        <p class="square-caption" style="color:#ff6b6b">مربع الضلع a</p>
+                    </div>
+                    
+                    <div class="plus-sign">+</div>
+                    
+                    <div class="square-wrapper">
+                        <div id="squareB" class="draggable-square" data-square="b" draggable="true">
+                            <span class="square-label">b²</span>
+                        </div>
+                        <p class="square-caption" style="color:#4ecdc4">مربع الضلع b</p>
+                    </div>
+                </div>
+
+                <div class="equals-sign">=</div>
+
+                <!-- منطقة الهدف (مربع الوتر) -->
+                <div class="target-area">
+                    <div id="targetC" class="target-square" data-target="c">
+                        <div class="grid-overlay"></div>
+                        <span class="target-label">c²</span>
+                    </div>
+                    <p class="square-caption" style="color:#95e1d3">مربع الوتر c</p>
+                </div>
+            </div>
+
+            <div class="proof-status">
+                <p id="statusMessage">اسحب المربعات إلى مربع الوتر لإكمال البرهان</p>
+                <button id="resetBtn" class="reset-btn">إعادة تعيين</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
